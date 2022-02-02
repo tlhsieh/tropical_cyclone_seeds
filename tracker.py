@@ -152,9 +152,9 @@ def run_50km(model_output_6hrly):
     for yrrange in yrranges:
         print(yrrange)
         
-        rain_in = xr.concat([xr.open_dataset(model_output_6hrly+'%04d0101.atmos_4xdaily.nc'%yr).precip for yr in yrrange], dim='time')
-        vort_in = xr.concat([xr.open_dataset(model_output_6hrly+'%04d0101.atmos_4xdaily.nc'%yr).vort850 for yr in yrrange], dim='time')
-        vref_in = xr.concat([xr.open_dataset(model_output_6hrly+'%04d0101.atmos_4xdaily.nc'%yr).v_ref for yr in yrrange], dim='time')
+        rain_in = xr.concat([xr.open_dataset(model_output_6hrly+'%04d0101.atmos_4xdaily.nc'%yr, chunks={'time':1}).precip for yr in yrrange], dim='time')
+        vort_in = xr.concat([xr.open_dataset(model_output_6hrly+'%04d0101.atmos_4xdaily.nc'%yr, chunks={'time':1}).vort850 for yr in yrrange], dim='time')
+        vref_in = xr.concat([xr.open_dataset(model_output_6hrly+'%04d0101.atmos_4xdaily.nc'%yr, chunks={'time':1}).v_ref for yr in yrrange], dim='time')
 
         raw_tracks[str(yrrange)] = tracker(rain_in, vort_in, vref_in, rain_percentile, dist_threshold, size_threshold, latlim, interp50=interp50)
         
