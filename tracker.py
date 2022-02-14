@@ -136,7 +136,7 @@ def track2netcdf(raw_track_list, yrranges):
 
     return ds, all_yrrange
 
-def run_50km(model_output_6hrly):
+def run_50km(model_output_6hrly, yr_beg=111, yr_end=150):
     ## tracker parameters
     rain_percentile = 99.5
     dist_threshold = 2.9 # degrees
@@ -144,7 +144,7 @@ def run_50km(model_output_6hrly):
     latlim = 30
     interp50 = False
     
-    yrranges = [range(yr, yr+5) for yr in range(111, 130, 5)] # process each 5-year chuck at a time
+    yrranges = [range(yr, yr+5) for yr in range(yr_beg, yr_end, 5)] # process each 5-year chuck at a time
     print(yrranges)
     
     raw_tracks = {}
@@ -165,4 +165,7 @@ def run_50km(model_output_6hrly):
     
 if __name__ == "__main__":
     model_output_6hrly = sys.argv[1]
-    run_50km(model_output_6hrly)
+    yr_beg = sys.argv[2]
+    yr_end = sys.argv[3]
+    
+    run_50km(model_output_6hrly, yr_beg, yr_end)
