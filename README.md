@@ -4,3 +4,7 @@ Tracker for convective clusters and tropical cyclone seeds, using six hourly cli
 
 Example: 
 python tracker.py path_to_6hrly_output 111 150
+
+### spi.py
+
+Computes the seed propensity index (Hsieh, Yang, Vecchi, and Zhao, 2022) given the monthly mean omega_500 and vort_850. Requires helper functions in [gfd.py](https://github.com/tlhsieh/geophysical_fluid_analysis/blob/master/gfd.py)
