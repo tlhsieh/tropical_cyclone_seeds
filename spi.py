@@ -3,8 +3,13 @@
 
 import numpy as np
 import xarray as xr
-from gfd import *
 
+def get_fcor(lat):
+    return 2*2*np.pi/86164*np.sin(lat/180*np.pi)
+
+def get_beta(lat):
+    return 2*2*np.pi/86164/6371e3*np.cos(lat/180*np.pi)
+    
 def Zparam(f, b, U=20): 
     """the non-dimensional Z parameter defined in Hsieh et al. (2020): Z = L_beta/L_f
     
